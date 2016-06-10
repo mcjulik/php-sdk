@@ -84,7 +84,7 @@ class UnitPay
      *
      * @return string
      */
-    public function form($publicKey, $sum, $account, $desc, $currency = 'RUB', $locale = 'ru')
+    public function form($publicKey, $sum, $account, $desc, $paymentType = '', $currency = 'RUB', $locale = 'ru')
     {
         $params = [
             'account' => $account,
@@ -96,8 +96,9 @@ class UnitPay
             $params['signature'] = $this->getSignature($params);
         }
         $params['locale'] = $locale;
-
-        return $this->formUrl.$publicKey.'?'.http_build_query($params);
+        $paymentType ? '/'.$paymentType : '';
+        
+        return $this->formUrl.$publicKey.$paymentType.'?'.http_build_query($params);
     }
 
     /**
