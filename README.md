@@ -31,6 +31,7 @@ $redirectUrl = $unitPay->form(
     $orderSum,
     $orderId,
     $orderDesc,
+    $paymentType,
     $orderCurrency
 );
 
